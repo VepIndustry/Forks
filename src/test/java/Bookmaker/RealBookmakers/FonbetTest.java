@@ -4,9 +4,8 @@ import Bookmaker.Bookmaker;
 import Bookmaker.Exception.BookmakerCreationException;
 import Bookmaker.Exception.SiteConnectionException;
 import Bookmaker.Properties.Money;
+import Bookmaker.RealBookmakers.Fonbet.Fonbet;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class FonbetTest {
 
@@ -14,7 +13,7 @@ public class FonbetTest {
     public void test1() {
         try {
             Bookmaker bookmaker = new Fonbet(new Money(100, 0));
-            bookmaker.getMatches();
+            System.out.println(bookmaker.getMatches());
         } catch (BookmakerCreationException | SiteConnectionException e) {
             System.out.println(e);
         }

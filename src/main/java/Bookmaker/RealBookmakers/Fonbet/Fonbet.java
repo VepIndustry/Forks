@@ -1,6 +1,6 @@
-package Bookmaker.RealBookmakers;
+package Bookmaker.RealBookmakers.Fonbet;
 
-import Bookmaker.*;
+import Bookmaker.Bookmaker;
 import Bookmaker.Exception.BookmakerCreationException;
 import Bookmaker.Exception.SiteConnectionException;
 import Bookmaker.Network;
@@ -9,35 +9,31 @@ import Bookmaker.Properties.Safety;
 import Fork.BetType;
 import Fork.Line;
 import Fork.Match;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
-import java.io.*;
 
 public class Fonbet extends Bookmaker {
 
-    private Network network;
+    private List<Match> matches = new ArrayList<>();
+    private FonbetDriver driver;
 
     public Fonbet(Money realMoney) throws BookmakerCreationException {
         super("Фонбет", "www.fonbet.ru", 0, Safety.C, realMoney);
         try {
-            network = new Network("https://line01.bkfon-resource.ru/live/updatesFromVersion/180441657/ru/");
+            driver = new FonbetDriver();
         } catch (IOException e) {
-            //TODO добавить больше отладочной информации и логгирование
-            throw new BookmakerCreationException("Невозможно подключиться к сайту с матчами\n" + e);
+            System.out.println("Не удалось подключиться к серверу" + e.getStackTrace());
         }
     }
 
+
     @Override
     public List<Match> getMatches() throws SiteConnectionException {
-        String page;
-        try {
-            page = network.getPage();
-            System.out.println(page);
-        } catch (IOException e) {
-            //TODO добавить больше отладочной информации и логгирование
-            throw new SiteConnectionException("Невозможно получить страницу с матчами\n" + e);
-        }
-        return null;
+        return driver.getMatches();
     }
 
     @Override

@@ -40,7 +40,7 @@ public class ForkGeneratorTest {
 
         Set<Line> lines = new HashSet<>(Arrays.asList(line1, line2));
 
-        for (Fork fork : generator.generate(lines, new Match("match"))) {
+        for (Fork fork : generator.generate(lines, new Match())) {
             if (fork.calculateUsuallyPercent() > 1.0) {
                 System.out.println(fork);
             }

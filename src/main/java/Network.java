@@ -3,6 +3,9 @@ package Bookmaker;
 import java.net.*;
 import java.io.*;
 
+/**
+ * Вспомогательный класс для работы с сетью
+ */
 public class Network {
 
     private HttpURLConnection connection;

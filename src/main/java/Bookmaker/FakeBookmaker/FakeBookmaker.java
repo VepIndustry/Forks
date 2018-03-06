@@ -18,10 +18,10 @@ import static java.lang.Math.random;
 
 public class FakeBookmaker extends Bookmaker {
     private static List<Match> matches = new ArrayList<>(Arrays.asList(
-            new Match("fakeMatch1"),
-            new Match("fakeMatch2"),
-            new Match("fakeMatch3"),
-            new Match("fakeMatch4")
+            new Match(),
+            new Match(),
+            new Match(),
+            new Match()
     ));
 
 
